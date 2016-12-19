@@ -1,12 +1,3 @@
 #+TITLE: Scrunch
 
-1. Accept a single argument in the form of =scrunch path/to/file\ name.m4a=
-2. Parse the argument, then collect metadata from it, placing each
-   known item into a metadata hash. Known metadata:
-   1. Title
-   2. Track number
-   3. Album
-   4. Genre
-   5. Artist
-   6. stik
-3. Collect the filename of the extracted artwork
+Scrunch makes audiobooks smaller, or it crashes.
