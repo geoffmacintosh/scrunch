@@ -31,14 +31,44 @@ def make_filename(input_file, metadata)
   end
 end
 
-def apply_metadata(input_file, metadata, cover_path)
-  "AtomicParsley \"#{input_file}\" --title \"#{metadata["nam"]}\" --album \"#{metadata["alb"]}\" --artist \"#{metadata["ART"]}\" --genre \"Audiobooks\" --stik \"Audiobook\" --artwork \"#{cover_path}\" --overWrite"
+def apply_metadata(file, metadata, cover)
+  %{AtomicParsley \"#{file}\"                     \
+                  --title \"#{metadata["nam"]}\"  \
+                  --album \"#{metadata["alb"]}\"  \
+                  --artist \"#{metadata["ART"]}\" \
+                  --genre \"Audiobooks\"          \
+                  --stik \"Audiobook\"            \
+                  --artwork \"#{path}\"           \
+                  --overWrite
+  }
 end
 
-metadata = get_metadata(ARGV[0])
-filename = make_filename(ARGV[0], metadata)
-cover = get_cover(ARGV[0])
+def on_path?(prog_name)
+  !`which "#{prog_name}"`.empty?
+end
 
-system crush_file(ARGV[0], filename)
+def assert_required(prog_name)
+  if !on_path? prog_name then
+    puts "Could not find required program \"#{prog_name}\".\n"
+    exit
+  end
+end
+
+if ARGV.length != 1 then
+  usage = "usage: scrunch <audiobook>"
+  puts usage
+  exit
+end
+
+assert_required "AtomicParsley"
+assert_required "afconvert"
+
+input_filename = ARGV[0]
+
+metadata = get_metadata(input_filename)
+filename = make_filename(input_filename, metadata)
+cover = get_cover(input_filename)
+
+system crush_file(input_filename, filename)
 system apply_metadata(filename, metadata, cover)
 system "rm \"#{cover}\""
