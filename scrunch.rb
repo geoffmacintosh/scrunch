@@ -1,17 +1,16 @@
+# coding: utf-8
 # -*-Ruby-*-
 
-def get_metadata(input_file)
-  unprocessed = `AtomicParsley \"#{input_file}\" -t`
-  array_lines = unprocessed.split(/\n/)
-  array_complicated = []
-  array_lines.each { |i|
-    array_complicated << i.split(": ")
+def get_metadata(file)
+  atoms = `AtomicParsley \"#{file}\" -t`
+  atoms.each_line.reduce({}) { |hash, line|
+    prefix, contents = line.split(": ")
+    atom_name = /([\w]{3,4})(?=\" contains)/.match(prefix).to_s
+    if !atom_name.empty? then
+      hash[atom_name] = contents.strip
+    end
+    hash
   }
-  array_transposed = array_complicated.transpose
-  array_transposed[0].map! { |i|
-    /[\w]{3,4}(?=\" contains)/.match(i).to_s
-  }
-  Hash[array_transposed[0].zip(array_transposed[1])]
 end
 
 def get_cover(input_file)
@@ -38,7 +37,7 @@ def apply_metadata(file, metadata, cover)
                   --artist \"#{metadata["ART"]}\" \
                   --genre \"Audiobooks\"          \
                   --stik \"Audiobook\"            \
-                  --artwork \"#{path}\"           \
+                  --artwork \"#{cover}\"          \
                   --overWrite
   }
 end
@@ -65,10 +64,18 @@ assert_required "afconvert"
 
 input_filename = ARGV[0]
 
-metadata = get_metadata(input_filename)
-filename = make_filename(input_filename, metadata)
-cover = get_cover(input_filename)
+if File.file?(input_filename) then
+  input_filename = File.absolute_path(input_filename)
+  
+  metadata = get_metadata(input_filename)
+  filename = File.join(File.dirname(input_filename),
+                       make_filename(input_filename, metadata))
+  cover = get_cover(input_filename)
 
-system crush_file(input_filename, filename)
-system apply_metadata(filename, metadata, cover)
-system "rm \"#{cover}\""
+  puts "scrunching..."
+  system crush_file(input_filename, filename)
+  system apply_metadata(filename, metadata, cover)
+  system "rm \"#{cover}\""
+else
+  puts "No such file or directory"
+end
