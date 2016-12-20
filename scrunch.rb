@@ -34,7 +34,8 @@ def apply_metadata(file, metadata, cover)
                   --genre \"Audiobooks\"          \
                   --stik \"Audiobook\"            \
                   --artwork \"#{cover}\"          \
-                  --overWrite
+                  --overWrite                     \
+                  2>&1 1>/dev/null
   }
 end
 
