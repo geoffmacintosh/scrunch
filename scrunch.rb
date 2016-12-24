@@ -66,10 +66,10 @@ if File.file?(input_filename) then
 
   metadata = get_metadata(input_filename)
   output_filename = make_filename(input_filename)
-  cover = get_cover(input_filename)
 
   puts "scrunching..."
   system crush_file(input_filename, output_filename)
+  cover = get_cover(input_filename)
   system apply_metadata(output_filename, metadata, cover)
   system "rm \"#{cover}\""
 else
