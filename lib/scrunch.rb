@@ -1,5 +1,5 @@
 require "scrunch/version"
 
 module Scrunch
-  # Your code goes here...
+  require "scrunch/scrunch-archive"
 end
