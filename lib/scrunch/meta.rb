@@ -20,7 +20,7 @@ module Meta
   end
 
   def self.apply_metadata(file, metadata, cover)
-    %{AtomicParsley \"#{file}\"
+    %{AtomicParsley \"#{file}\" \
                   --title \"#{metadata["nam"]}\"  \
                   --album \"#{metadata["alb"]}\"  \
                   --artist \"#{metadata["ART"]}\" \
