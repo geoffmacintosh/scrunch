@@ -2,3 +2,5 @@ AllCops:
   TargetRubyVersion: 2.0
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
