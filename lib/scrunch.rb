@@ -2,5 +2,7 @@ require "scrunch/version"
 
 # Scunches.
 module Scrunch
-  require "scrunch/app"
+  require "scrunch/meta"
+  require "scrunch/transcode"
+  require "scrunch/main"
 end
