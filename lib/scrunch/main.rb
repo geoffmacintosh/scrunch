@@ -8,20 +8,25 @@ module Main
     raise "Could not find \"#{prog_name}\".\n" unless on_path?(prog_name)
   end
 
-  if ARGV.length != 1
-    usage = "usage: scrunch <audiobook>"
-    puts usage
-    exit
+  def self.check_args
+    return if ARGV.length == 1
+    abort "usage: scrunch <audiobook>"
   end
 
-  assert_required "AtomicParsley"
-  assert_required "afconvert"
+  def self.check_reqs
+    assert_required "AtomicParsley"
+    assert_required "afconvert"
+  end
 
-  input_filename = ARGV[0]
+  def self.preflight
+    check_args
+    check_reqs
+    abort "no such file or directory" unless File.file?(ARGV[0])
+  end
 
-  if File.file?(input_filename)
-    input_filename = File.absolute_path(input_filename)
-
+  def self.run
+    preflight
+    input_filename = File.absolute_path(ARGV[0])
     metadata = Meta.get_metadata(input_filename)
     output_filename = Meta.make_filename(input_filename)
 
@@ -30,7 +35,5 @@ module Main
     cover = Meta.get_cover(input_filename)
     system Meta.apply_metadata(output_filename, metadata, cover)
     system "rm \"#{cover}\""
-  else
-    puts "No such file or directory"
   end
 end
