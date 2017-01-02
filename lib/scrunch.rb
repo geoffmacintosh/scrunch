@@ -1,5 +1,6 @@
 require "scrunch/version"
 
+# Scunches.
 module Scrunch
-  require "scrunch/scrunch-archive"
+  require "scrunch/app"
 end

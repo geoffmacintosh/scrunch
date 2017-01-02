@@ -1,14 +1,9 @@
-# coding: utf-8
-# -*-Ruby-*-
-
 def get_metadata(file)
   atoms = `AtomicParsley \"#{file}\" -t`
   atoms.each_line.reduce({}) { |hash, line|
     prefix, contents = line.split(": ")
     atom_name = /([\w]{3,4})(?=\" contains)/.match(prefix).to_s
-    if !atom_name.empty? then
-      hash[atom_name] = contents.strip
-    end
+    hash[atom_name] = contents.strip unless atom_name.empty?
     hash
   }
 end
@@ -50,7 +45,7 @@ def assert_required(prog_name)
   end
 end
 
-if ARGV.length != 1 then
+if ARGV.length != 1
   usage = "usage: scrunch <audiobook>"
   puts usage
   exit
@@ -61,7 +56,7 @@ assert_required "afconvert"
 
 input_filename = ARGV[0]
 
-if File.file?(input_filename) then
+if File.file?(input_filename)
   input_filename = File.absolute_path(input_filename)
 
   metadata = get_metadata(input_filename)
