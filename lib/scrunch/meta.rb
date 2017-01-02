@@ -2,7 +2,7 @@
 module Meta
   def self.get_metadata(file)
     atoms = `AtomicParsley \"#{file}\" -t`
-    atoms.each_line.reduce({}) do |hash, line|
+    atoms.each_line.each_with_object({}) do |line, hash|
       prefix, contents = line.split(": ")
       atom_name = /([\w]{3,4})(?=\" contains)/.match(prefix).to_s
       hash[atom_name] = contents.strip unless atom_name.empty?

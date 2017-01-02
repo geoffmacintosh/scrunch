@@ -9,6 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Geoff MacIntosh"]
   spec.email         = ["geoff@mac.into.sh"]
 
+  spec.executables   = ["scrunch"]
+
   spec.summary       = "Squish audiobooks with force"
   spec.description   = "A tool to make audiobooks smaller"
   spec.homepage      = "https://github.com/geoffmacintosh/scrunch"
