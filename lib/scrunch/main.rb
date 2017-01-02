@@ -1,13 +1,11 @@
+# Generic. Basically everything.
 module Main
   def self.on_path?(prog_name)
     !`which "#{prog_name}"`.empty?
   end
 
   def self.assert_required(prog_name)
-    if !on_path? prog_name then
-      puts "Could not find required program \"#{prog_name}\".\n"
-      exit
-    end
+    raise "Could not find \"#{prog_name}\".\n" unless on_path?(prog_name)
   end
 
   if ARGV.length != 1
