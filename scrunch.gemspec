@@ -3,6 +3,7 @@ lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "scrunch/version"
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name          = "scrunch"
   spec.version       = Scrunch::VERSION
@@ -41,3 +42,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-doc", ">= 0.6.0"
   spec.add_development_dependency "method_source", ">= 0.8.2"
 end
+# rubocop:enable Metrics/BlockLength
