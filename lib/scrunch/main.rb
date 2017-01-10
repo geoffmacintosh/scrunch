@@ -14,7 +14,7 @@ module Main
   # to scrunch.
   def self.check_args
     return if ARGV.length == 1
-    abort "usage: scrunch <audiobook>"
+    abort "Usage: scrunch <audiobook>"
   end
 
   # AtomicParsley and afconvert are required for scrunch to scrunch,
@@ -30,7 +30,7 @@ module Main
   def self.preflight
     check_args
     check_reqs
-    abort "no such file or directory" unless File.file?(ARGV[0])
+    abort "No such file or directory" unless File.file?(ARGV[0])
   end
 
   # Scrunches.
