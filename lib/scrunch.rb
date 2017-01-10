@@ -3,5 +3,5 @@ require "scrunch/meta"
 require "scrunch/transcode"
 require "scrunch/main"
 
-# Scunches.
+# Scrunches.
 module Scrunch end
