@@ -31,12 +31,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.13"
+  #  spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rubocop", "~> 0.46.0"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "pry-doc", ">= 0.6.0"
   spec.add_development_dependency "method_source", ">= 0.8.2"
+
+  spec.add_dependency "bundler", "~> 1.13"
 end
 # rubocop:enable Metrics/BlockLength
