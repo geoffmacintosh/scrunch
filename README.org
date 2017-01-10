@@ -1,3 +1,39 @@
 #+TITLE: Scrunch
 
-Scrunch makes audiobooks smaller, or it crashes.
+Squish audiobooks with force.
+
+Scrunch is a Ruby Gem that converts audiobooks into tiny, [[https://en.wikipedia.org/wiki/High-Efficiency_Advanced_Audio_Coding#Versions][HE-AAC
+v2]]-encoded files. These files are high-quality with small file sizes
+and designed for things like audiobooks. Importantly, they are totally
+supported on iOS, so you can carry enough books on your phone to last
+a lifetime or two. That's how you win at the game of life.
+
+* Requirements
+You need a few things to scrunch.
+
+1. A computer running macOS. 10.12 Sierra and 10.11 El Capitan are
+   supported for sure. Previous versions probably work fine too, but I
+   don't have computers to test for sure. macOS is needed for the
+   ~afcovert~ tool that is made by Apple, and only present on macOS.
+   Sorry.
+2. AtomicParsley. This is best installed via [[http://brew.sh][Homebrew]]. Install
+   Homebrew via its instructions then run ~brew install atomicparsley~
+   in your terminal. It's available on [[https://www.macports.org][MacPorts]] and [[https://nixos.org/nix/][Nix]] too.
+3. (Optional) Ruby. macOS ships with a totally useable version of
+   Ruby, but it requires a password to install gems. So maybe ~brew
+   install ruby~?
+
+* Installation
+Scrunch is a ruby gem. Install it via ~gem install scrunch~ and get
+scrunching. Also then listen to the audiobook. Why would you make an
+audiobook totally awesome and not listen to it after? That's crazy.
+
+* Usage
+That's the easy part. Get an audiobook that you want to scrunch, then
+run ~scrunch path/to/audiobook.m4b~ in the terminal. Scrunch currently
+only supports m4a/m4b files, and it won't currently concatenate
+audiobooks that are broken up into multiple files.
+
+* Notes
+Scrunch is currently under development. It will be better in the
+future. Check out what's [[file:todo.org][upcoming]].
