@@ -1,6 +1,6 @@
 #+TITLE: Scrunch: Game Plan
 
-* [0/5] Fixes
+* [1/5] Fixes
 ** TODO [[file:lib/scrunch/meta.rb::def%20self.get_metadata(file)][Meta.get_metadata]]
 - [ ] Change the name of Meta.get_metadata to Meta.get
 - [ ] Describe what the regex in Meta.get_metadata does
@@ -18,6 +18,6 @@
 ** TODO [[file:lib/scrunch/transcode.rb::def%20self.crush_file(input_file,%20output_file)][Transcode.crush_file]]
 - [ ] Rename this to Transcode.crush or something.
 
-** TODO Shell rm
-- [ ] Change Main.run so that it deletes the cover with ruby instead
+** DONE Shell rm
+- [X] Change Main.run so that it deletes the cover with ruby instead
   of a shell script: [[file:lib/scrunch/main.rb::system%20"rm%20\"#{cover}\""][Shell rm]]
