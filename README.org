@@ -36,4 +36,5 @@ audiobooks that are broken up into multiple files.
 
 * Notes
 Scrunch is currently under development. It will be better in the
-future. Check out what's [[file:todo.org][upcoming]].
+future. Check out where things are [[file:todo.org][going]], or see where things have
+[[file:changelog.org][been]] in the changelog.
