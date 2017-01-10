@@ -1,0 +1,9 @@
+#+TITLE: Changelog
+
+* 0.1.1
+** Bug Fixes
+- (Hopefully) fixed dependencies so that bundler is installed if
+  needed.
+
+* 0.1.0
+- Initial release.
