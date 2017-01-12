@@ -44,6 +44,6 @@ module Main
     system Transcode.crush_file(input_filename, output_filename)
     cover = Meta.get_cover(input_filename)
     system Meta.apply_metadata(output_filename, metadata, cover)
-    system "rm \"#{cover}\""
+    File.unlink cover if File.file? cover
   end
 end
