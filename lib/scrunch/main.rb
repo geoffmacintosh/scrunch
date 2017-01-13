@@ -12,13 +12,7 @@ module Main
     raise "Could not find \"#{prog_name}\".\n" unless on_path?(prog_name)
   end
 
-  # Checks to ensure the correct  number of arguments have been passed
-  # to scrunch.
-  def self.check_args
-    return if ARGV.length == 1
-    abort "Usage: scrunch <audiobook>"
-  end
-
+  # Parse arguments. Parse 'em good.
   # rubocop:disable Metrics/MethodLength
   def self.args
     Trollop.options do # opts = Trollop.options do
@@ -34,8 +28,7 @@ where <path> is an m4a or m4b file that is too big.
 Additional flags:
 EOS
     end
-    # puts opts
-    abort
+    Trollop.educate if ARGV.length != 1
   end
   # rubocop:enable Metrics/MethodLength
 
