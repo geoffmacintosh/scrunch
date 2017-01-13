@@ -1,3 +1,5 @@
+require "trollop"
+
 # Generic. Basically everything.
 module Main
   # Checks to see if a program is on $PATH.
@@ -17,6 +19,26 @@ module Main
     abort "Usage: scrunch <audiobook>"
   end
 
+  # rubocop:disable Metrics/MethodLength
+  def self.args
+    Trollop.options do # opts = Trollop.options do
+      version "Scrunch version #{Scrunch::VERSION}"
+      banner <<-EOS
+Scrunch
+A tool to make audiobooks smaller.
+
+Usage:
+        scrunch <path>
+where <path> is an m4a or m4b file that is too big.
+
+Additional flags:
+EOS
+    end
+    # puts opts
+    abort
+  end
+  # rubocop:enable Metrics/MethodLength
+
   # AtomicParsley and afconvert are required for scrunch to scrunch,
   # so they needs checking for.
   def self.check_reqs
@@ -28,7 +50,8 @@ module Main
   # made to ensure that it is ready to scrunch. This runs the other
   # methods that check for problems before scrunchery.
   def self.preflight
-    check_args
+    # check_args
+    args
     check_reqs
     abort "No such file or directory" unless File.file?(ARGV[0])
   end

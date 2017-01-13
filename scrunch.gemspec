@@ -40,5 +40,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "method_source", ">= 0.8.2"
 
   spec.add_dependency "bundler", "~> 1.13"
+  spec.add_dependency "trollop", "~> 2.1.2"
 end
 # rubocop:enable Metrics/BlockLength
